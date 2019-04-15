@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <h1>
+            회원가입 페이지
+        </h1>
+        <form>
+            <table>
+                <tr><th>아이디 : </th><th><input type="text" name="id"></th></tr>
+                <tr><th>이름 : </th><th><input type="text" name="name"></th></tr>
+                <tr><th>비밀번호 : </th><th><input type="password" name="pwd"></th></tr>
+                <tr><th>전화번호 : </th><th><input type="tel" name="tel"></th></tr>
+                <tr><th>이메일 : </th><th><input type="email" name="email"></th></tr>
+                <tr><th>주소 : </th><th><input type="address" name="address"></th></tr>
+                <tr><th><input type="button" id="exe" value="회원가입"></th><th><input type="button" value="뒤로가기" onclick="history.back(-1);"></th></tr>
+            </table>
+        </form><br><br>
+        <hr>
+        <div id="member"></div>
+        <hr>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+       <script>
+       
+       </script>
+       
+        <script>
+        $('#exe').click(function(){
+            $.ajax({
+                url:'http://localhost:3000/joinok',
+                type:'post',
+                data:$('form').serialize(),
+                success:function(data){
+                    $('#member').text(data);
+                }
+            })
+        });
+        </script>
+
+    </body>
+</html>
