@@ -12,6 +12,61 @@ var con = mysql.createConnection({
     database: "nodejs"
   });
 
+  //welcome page
+  app.get('/', function(req, res){
+    fs.readFile('views/index.html',  'utf-8', function(err, data){
+    if(err){
+        console.log(err);
+        res.send('intenal server error');
+    }
+    res.end(data);
+    });
+    });
+
+  //login page  
+  app.get('/login', function(req, res){
+    console.log('hello login');
+    fs.readFile('views/login.html',  'utf-8', function(err, data){
+        if(err){
+            console.log(err);
+            res.send('intenal server error');
+        }
+        res.end(data);
+    });
+});
+
+//loginjoinform page
+app.get('/loginform', function(req, res){
+    console.log('hello login');
+    fs.readFile('views/loginform.html',  'utf-8', function(err, data){
+        if(err){
+            console.log(err);
+            res.send('intenal server error');
+        }
+        res.end(data);
+    });
+});
+
+//memberlist page
+app.get('/memberlist', function(req, res){
+    fs.readFile('views/memberlist.html',  'utf-8', function(err, data){
+        if(err){
+            console.log(err);
+            res.send('intenal server error');
+        }
+        res.end(data);
+    });
+});
+
+//로그인시 로그인성공
+app.post('/loginok', function(req, res){
+    console.log('post ok!')
+    var id = req.body.id;
+    var data =`${id} 님 로그인에 성공하셨습니다.`;
+    res.send(data);
+});
+
+//회원가입 성공
 app.post('/joinok', function(req, res){
     con.connect(function(err) {
         if (err) throw err;
@@ -24,9 +79,9 @@ app.post('/joinok', function(req, res){
           res.end('회원가입이 완료되었습니다.');
         });
       });
-     
 });
 
+//가입된 회원정보 리스트
 app.get('/memberlist', function(req, res){
     console.log('hello memberlist')
     con.connect(function(err) {
@@ -59,46 +114,7 @@ app.get('/memberlist', function(req, res){
         });
       });
     });
-
-app.get('/', function(req, res){
-fs.readFile('views/index.html',  'utf-8', function(err, data){
-if(err){
-    console.log(err);
-    res.send('intenal server error');
-}
-res.end(data);
-});
-});
-
-app.get('/login.html', function(req, res){
-    console.log('hello login');
-    fs.readFile('views/login.html',  'utf-8', function(err, data){
-        if(err){
-            console.log(err);
-            res.send('intenal server error');
-        }
-        res.end(data);
-    });
-});
-app.get('/loginform.html', function(req, res){
-    console.log('hello login');
-    fs.readFile('views/loginform.html',  'utf-8', function(err, data){
-        if(err){
-            console.log(err);
-            res.send('intenal server error');
-        }
-        res.end(data);
-    });
-});
-
-app.post('/loginok', function(req, res){
-    console.log('post ok!')
-    var id = req.body.id;
-    var pwd = req.body.pwd;
-    var data = '아이디 : '+id+'<br>'+'비밀번호 : '+pwd;
-    res.send(data);
-});
-
+    
 app.listen(3000, function(){
     console.log('connected 3000 port');
 });

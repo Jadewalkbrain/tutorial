@@ -13,15 +13,14 @@
                 <tr><th>비밀번호 : </th><th><input type="password" name="pwd"></th></tr>
                 <tr><th><input type="button" id="exe" value="로그인"></th><th><input type="button" value="뒤로가기" onclick="history.back(-1);"></th></tr>
             </table>
-        </form><br><br>
+        </form>
+        <br><br>
         <hr>
-        <div id="member"></div>
+        <p id ="member"></p>
         <hr>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-       <script>
-       
-       </script>
-       
+
+        <!-- jquery&ajax 이용한 방법 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script>
         $('#exe').click(function(){
             $.ajax({
@@ -33,7 +32,7 @@
                 }
             })
         });
-        </script>
+    </script>
 
     </body>
 </html>
