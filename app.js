@@ -3,6 +3,12 @@ var app = express();
 var fs = require('fs');
 var bodyParser = require('body-parser');
 var mysql = require('mysql');
+var router = require('./router/main')(app);
+
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile);
+app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended:false}));
 
 var con = mysql.createConnection({
@@ -12,53 +18,7 @@ var con = mysql.createConnection({
     database: "nodejs"
   });
 
-  //welcome page
-  app.get('/', function(req, res){
-    fs.readFile('views/index.html',  'utf-8', function(err, data){
-    if(err){
-        console.log(err);
-        res.send('intenal server error');
-    }
-    res.end(data);
-    });
-    });
-
-  //login page  
-  app.get('/login', function(req, res){
-    console.log('hello login');
-    fs.readFile('views/login.html',  'utf-8', function(err, data){
-        if(err){
-            console.log(err);
-            res.send('intenal server error');
-        }
-        res.end(data);
-    });
-});
-
-//loginjoinform page
-app.get('/loginform', function(req, res){
-    console.log('hello login');
-    fs.readFile('views/loginform.html',  'utf-8', function(err, data){
-        if(err){
-            console.log(err);
-            res.send('intenal server error');
-        }
-        res.end(data);
-    });
-});
-
-//memberlist page
-app.get('/memberlist', function(req, res){
-    fs.readFile('views/memberlist.html',  'utf-8', function(err, data){
-        if(err){
-            console.log(err);
-            res.send('intenal server error');
-        }
-        res.end(data);
-    });
-});
-
-//로그인시 로그인성공
+  //로그인시 로그인성공
 app.post('/loginok', function(req, res){
     console.log('post ok!')
     var id = req.body.id;
@@ -114,7 +74,7 @@ app.get('/memberlist', function(req, res){
         });
       });
     });
-    
+
 app.listen(3000, function(){
     console.log('connected 3000 port');
 });
