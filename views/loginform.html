@@ -1,51 +1,68 @@
 <!DOCTYPE html>
 <html>
-    <head>
             <head>
                     <meta charset="utf-8">
                     <!--Import Google Icon Font-->
                     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
                     <!--Import materialize.css-->
-                    <link type="text/css" rel="stylesheet" href="../public/css/materialize.min.css"  media="screen,projection"/>
+                    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
                     <!--Let browser know website is optimized for mobile-->
                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                    <style>h3{
+                            text-align: center;  
+                          }
+                          #submit{
+                            text-align: right;  
+                            padding-right: 150px;
+                          }
+                          .joinform {
+                            margin: auto;
+                            width: 50%;
+                            padding:10px;
+                            padding-left: 150px;
+                            }
+                          </style>
                   </head>
-    </head>
     <body>
-        <h1>
-            회원가입 페이지
-        </h1>
-        <form>
-            <table>
-                <tr><th>아이디 : </th><th><input type="text" name="id"></th></tr>
-                <tr><th>이름 : </th><th><input type="text" name="name"></th></tr>
-                <tr><th>비밀번호 : </th><th><input type="password" name="pwd"></th></tr>
-                <tr><th>전화번호 : </th><th><input type="tel" name="tel"></th></tr>
-                <tr><th>이메일 : </th><th><input type="email" name="email"></th></tr>
-                <tr><th>주소 : </th><th><input type="address" name="address"></th></tr>
-                <tr><th><input type="button" id="exe" value="회원가입"></th><th><input type="button" value="뒤로가기" onclick="history.back(-1);"></th></tr>
-            </table>
-        </form><br><br>
-        <hr>
-        <div id="member"></div>
-        <hr>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-       <script>
-       
-       </script>
-       
-        <script>
-        $('#exe').click(function(){
-            $.ajax({
-                url:'http://localhost:3000/joinok',
-                type:'post',
-                data:$('form').serialize(),
-                success:function(data){
-                    $('#member').text(data);
-                }
-            })
-        });
-        </script>
-
+        <h3>
+            <a href="http://localhost:3000/loginform">회원가입</a>
+        </h3>
+        <div class="joinform">
+                <form class="col s12" action="http://localhost:3000/joinok" method="POST">
+                  <div class="row">
+                    <div class="input-field col s5">
+                      <input placeholder="아이디" name="id" type="text" class="validate">
+                    </div>
+                    <div class="input-field col s5">
+                      <input placeholder="이름" name="name" type="text" class="validate">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s10">
+                      <input placeholder="비밀번호" name="password" type="password" class="validate">
+                    </div>
+                  </div>
+                  <div class="row">
+                        <div class="input-field col s10">
+                          <input placeholder="전화번호" name="tel" type="tel" class="validate">
+                        </div>
+                      </div>
+                  <div class="row">
+                    <div class="input-field col s10">
+                      <input placeholder="이메일" name="email" type="email" class="validate">
+                    </div>
+                  </div>
+                  <div class="row">
+                        <div class="input-field col s10">
+                          <input placeholder="주소" name="address" type="text" class="validate">
+                        </div>
+                      </div>
+                      <div class="row" id="submit">
+                      <input id="exe" class="btn waves-effect waves-light" type="submit" value="회원가입">
+                      <input class="btn waves-effect waves-light" type="button" value="취소" onclick="history.back(-1);">
+                        </div>
+                    </form>
+                </div>
     </body>
 </html>
+
