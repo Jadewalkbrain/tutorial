@@ -36,10 +36,11 @@ app.post('/joinok', function(req, res){
         con.query(sql, user, function (err, result) {
           if (err) throw err;
           console.log("1 record inserted");
-          res.end('회원가입이 완료되었습니다.');
+          res.redirect('http://localhost:3000/login');
         });
       });
 });
+
 
 //가입된 회원정보 리스트
 app.get('/memberlist', function(req, res){
@@ -48,7 +49,6 @@ app.get('/memberlist', function(req, res){
         if (err) throw err;
         con.query("SELECT * FROM member", function (err, result, fields) {
           if (err) throw err;
-          console.log(result[0].id);
           var list ='';
           for(var i=0;i < result.length;i++){
               list +='<li>'+ result[i].id +','+result[i].name +','+result[i].pwd+','+ result[i].tel+','+ result[i].email+','+ result[i].address +'</li>'+'<br>';
@@ -61,7 +61,7 @@ app.get('/memberlist', function(req, res){
     </head>
     <body>
         <h1>
-            회원정보list
+            회원정보lis
         </h1>
         <tr><th><input type="button" value="뒤로가기" onclick="history.back(-1);"></th></tr>
         <ul>

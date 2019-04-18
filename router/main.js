@@ -18,9 +18,4 @@ app.get('/loginform', function(req, res){
     console.log('hello login');
         res.render('loginform.html');
     });
-
-//memberlist page
-app.get('/memberlist', function(req, res){
-        res.render('memberlist.html');
-    });
 }
